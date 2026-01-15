@@ -8,8 +8,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--idx", type=int, required=True)
 args = parser.parse_args()
 
-# Number of runs = 12
-
 
 def main():
     d = 100
@@ -18,14 +16,14 @@ def main():
 
     alphaPR = utils.PR_threshold(kappa, kappastar)
     a = np.linspace(0.01, alphaPR + 0.1, 30)
-    alpha = [a[0:10], a[10:20], a[20:30]]
+    alpha = [a[0:13], a[13:23], a[23:30]]
     rep = 10
 
     eta = 5e-3
     Tmax = 10000
     lam = 0.
     delta = 0.
-    gamma = [1., 0.1, 0.01, 0.005]
+    gamma = [1., 0.5, 0.1, 0.01]
 
     num_save = 10
 
