@@ -1,0 +1,48 @@
+import sys
+import os
+import numpy as np
+import argparse
+
+# Add project_root/code to Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+code_dir = os.path.join(project_root, "code")
+sys.path.insert(0, code_dir)
+
+import model
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--idx", type=int, required=True)
+args = parser.parse_args()
+
+# Number of runs = 4
+
+
+def main():
+    d = 100
+    kappa = 0.4
+    kappastar = 0.3
+
+    alpha = np.linspace(0.01, 0.6, 20)
+    rep = 10
+
+    eta = 5e-3
+    Tmax = 5000
+    lam = [0.1, 0.05, 0.01, 0.005]
+    delta = 1.0
+    gamma = 1.
+
+    num_save = 10
+
+    i = args.idx
+
+    ID = 'Fig6_1{}'.format(i)
+
+    Sim = model.Simulator(d, kappa, kappastar, alpha, rep, eta, Tmax, lam[i], gamma,
+                          delta, num_save, saveZ=False, saveLabels=False, ID=ID)
+
+    Sim.simulate()
+    Sim.save()
+
+
+if __name__ == '__main__':
+    main()
