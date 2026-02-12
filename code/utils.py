@@ -7,8 +7,6 @@ import torch
 import matplotlib.colors as mcolors
 
 
-# modify derivative? Mention midpoint?
-
 
 class ClearCache:
     """Clear the CUDA cache before and after a simulation."""
